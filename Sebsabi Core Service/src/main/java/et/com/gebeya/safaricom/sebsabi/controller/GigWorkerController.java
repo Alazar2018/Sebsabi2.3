@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/api/core/gig-worker")
 public class GigWorkerController {
     private final GigWorkerService gigWorkerService;
-   @PostMapping("/signup/gig-workers")
+   @PostMapping("/signup")
    @ResponseStatus(HttpStatus.CREATED)
     public void createGigWorker(@RequestBody GigWorkerRequest gigWorkerRequest){
         gigWorkerService.createGigWorkers(gigWorkerRequest);

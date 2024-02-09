@@ -24,7 +24,7 @@ public class ClientService {
     public void createClients(ClientRequest clientRequest){
         Client client=new Client(clientRequest);
         clientRepository.save(client);
-        createClientssUserInformation(client);
+        //createClientssUserInformation(client);
         log.info("Client {} is Created and saved",client.getFirstName());
 
     }

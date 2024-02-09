@@ -23,7 +23,7 @@ public class GigWorkerService {
 
     public void createGigWorkers(GigWorkerRequest gigWorkerRequest){
         GigWorker gigWorker=new GigWorker(gigWorkerRequest);
-        createGigWorkersUserInformation(gigWorker);
+       // createGigWorkersUserInformation(gigWorker);
         gigWorkerRepository.save(gigWorker);
         log.info("Gig-Worker {} is Created and saved",gigWorkerRequest.getFirstName());
     }
