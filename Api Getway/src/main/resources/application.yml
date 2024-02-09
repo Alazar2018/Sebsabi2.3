@@ -6,8 +6,7 @@ spring:
           uri: lb://sebsabi-core-service
           predicates:
             - Path=/api/core/**
-          filters:
-            - AuthenticationFilter
+
 
 
         - id: discovery-server
