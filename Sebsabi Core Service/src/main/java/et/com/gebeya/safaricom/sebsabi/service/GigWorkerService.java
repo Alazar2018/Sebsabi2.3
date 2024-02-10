@@ -23,7 +23,7 @@ public class GigWorkerService {
 
     public void createGigWorkers(GigWorkerRequest gigWorkerRequest){
         GigWorker gigWorker=new GigWorker(gigWorkerRequest);
-       // createGigWorkersUserInformation(gigWorker);
+       createGigWorkersUserInformation(gigWorker);
         gigWorkerRepository.save(gigWorker);
         log.info("Gig-Worker {} is Created and saved",gigWorkerRequest.getFirstName());
     }
@@ -31,6 +31,7 @@ public class GigWorkerService {
         UserInformation userInformation = new UserInformation();
         userInformation.setUsername(gigWorker.getEmail());
         userInformation.setPassword(gigWorker.getPassword());
+        userInformation.setRoles("ROLE_GIGWORKER");
 
         String response = webClientBuilder.build().post()
                 .uri("http://identity-service/auth/register")

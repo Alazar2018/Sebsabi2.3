@@ -6,7 +6,13 @@ spring:
           uri: lb://sebsabi-core-service
           predicates:
             - Path=/api/core/**
+          filters:
+            - AuthenticationFilter
 
+        - id: sebsabi-core-documentation
+          uri: lb://sebsabi-core-service
+          predicates:
+            - Path=/sebsabi-documentation.html
 
 
         - id: discovery-server
@@ -30,6 +36,7 @@ spring:
 
   application:
     name: api-gateway
+      i
 
 eureka:
   client:

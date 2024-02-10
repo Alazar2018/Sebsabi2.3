@@ -14,6 +14,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.InvocationTargetException;
+import java.nio.file.AccessDeniedException;
 import java.util.Collections;
 import java.util.List;
 @Service
@@ -29,8 +30,6 @@ public class FormService {
         formRepository.save(form);
         log.info("New form created titled: {}", form.getTitle());
     }
-
-
 
     public Form addQuestionToForm(Long formId, FormQuestionDto questionDTO) throws InvocationTargetException, IllegalAccessException {
         Form form = getFormById(formId);
@@ -70,7 +69,9 @@ public class FormService {
 
         return formRepository.save(form);
     }
-
+    public Form getFormForGigWorker(Long gigWorkerId, Long formId) throws AccessDeniedException {
+        return formRepository.findByIdAndAssignedGigWorkerId(formId, gigWorkerId).orElseThrow(() -> new AccessDeniedException("You are not authorized to access this form"));
+    }
     public UserResponse submitResponse(UserResponseDto responseDTO) {
         Form form = getFormById(responseDTO.getFormId());
         FormQuestion question = form.getQuestions().stream()

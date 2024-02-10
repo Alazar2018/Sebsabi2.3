@@ -4,6 +4,7 @@ import et.com.gebeya.safaricom.sebsabi.dto.ClientRequest;
 import et.com.gebeya.safaricom.sebsabi.dto.ClientResponse;
 import et.com.gebeya.safaricom.sebsabi.dto.UserInformation;
 import et.com.gebeya.safaricom.sebsabi.model.Client;
+import et.com.gebeya.safaricom.sebsabi.model.enums.Authority;
 import et.com.gebeya.safaricom.sebsabi.repository.ClientRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,15 +25,16 @@ public class ClientService {
     public void createClients(ClientRequest clientRequest){
         Client client=new Client(clientRequest);
         clientRepository.save(client);
-        //createClientssUserInformation(client);
+        createClientsUserInformation(client);
         log.info("Client {} is Created and saved",client.getFirstName());
 
     }
 
-    private void createClientssUserInformation(Client client) {
+    private void createClientsUserInformation(Client client) {
         UserInformation userInformation = new UserInformation();
         userInformation.setUsername(client.getEmail());
         userInformation.setPassword(client.getPassword());
+        userInformation.setRoles("ROLE_CLIENTS");
 
         String response = webClientBuilder.build().post()
                 .uri("http://identity-service/auth/register")

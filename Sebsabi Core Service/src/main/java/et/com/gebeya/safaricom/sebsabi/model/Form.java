@@ -30,8 +30,11 @@ public class Form {
     @OneToMany(mappedBy = "form", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<UserResponse> userResponses;
-
-
+//    @OneToMany(mappedBy = "form", cascade = CascadeType.ALL)
+//    private List<Proposal> proposals;
+@ManyToOne
+@JoinColumn(name = "gig_worker_id")
+private GigWorker assignedGigWorker;
     public Form(FormDto formDto) {
 
         this.setDescription(formDto.getDescription());
