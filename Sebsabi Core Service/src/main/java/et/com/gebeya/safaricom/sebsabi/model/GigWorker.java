@@ -25,6 +25,7 @@ public class GigWorker extends Person{
         this.setFirstName(gigWorkerRequest.getFirstName());
         this.setLastName(gigWorkerRequest.getLastName());
         this.setEmail(gigWorkerRequest.getEmail());
+        this.setPassword(gigWorkerRequest.getPassword());
         this.setQualification(gigWorkerRequest.getQualification());
         this.setDob(gigWorkerRequest.getDob());
         this.setAge(gigWorkerRequest.getAge());

@@ -6,6 +6,7 @@ import et.com.gebeya.safaricom.sebsabi.service.ClientService;
 import jakarta.annotation.security.RolesAllowed;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public class ClientController {
         return clientService.getAllClients();
     }
     @GetMapping()
+    @PreAuthorize("hasAuthority('ROLE_CLIENT')")
     @ResponseStatus(HttpStatus.OK)
     public String getMessage(){
        return "see us";
