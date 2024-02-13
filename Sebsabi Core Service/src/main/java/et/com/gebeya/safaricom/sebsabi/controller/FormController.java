@@ -64,11 +64,11 @@ public class FormController {
     public List<FormQuestion> viewQuestions(@RequestParam Long formID) throws InvocationTargetException, IllegalAccessException {
         return formQuestionService.getFormQuestionBYFOrmID(formID);
     }
-    @PostMapping("/assign-job")
-    public ResponseEntity<GigWorker> assignJobToGigWorker(@RequestParam Long gigWorkerId, @RequestParam Long formId) {
-        GigWorker assignedGigWorker = gigWorkerService.assignJobToGigWorker(gigWorkerId, formId);
-        return ResponseEntity.ok(assignedGigWorker);
-    }
+//    @PostMapping("/assign-job")
+//    public ResponseEntity<GigWorker> assignJobToGigWorker(@RequestParam Long gigWorkerId, @RequestParam Long formId) {
+//        GigWorker assignedGigWorker = gigWorkerService.assignJobToGigWorker(gigWorkerId, formId);
+//        return ResponseEntity.ok(assignedGigWorker);
+//    }
 
     @GetMapping("/{formId}")
     public ResponseEntity<Form> getForm(@PathVariable Long formId, Principal principal) throws AccessDeniedException {
