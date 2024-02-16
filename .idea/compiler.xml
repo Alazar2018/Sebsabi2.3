@@ -11,6 +11,7 @@
         <module name="sebsabi_core_service" />
         <module name="identity-service" />
         <module name="api_getway" />
+        <module name="notification-service" />
       </profile>
     </annotationProcessing>
   </component>
@@ -19,6 +20,7 @@
       <module name="Sebsabi" options="" />
       <module name="api_getway" options="-parameters" />
       <module name="identity-service" options="-parameters" />
+      <module name="notification-service" options="-parameters" />
       <module name="sebsabi_core_service" options="-parameters" />
       <module name="service_discovery" options="-parameters" />
     </option>

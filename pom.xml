@@ -15,11 +15,12 @@
     <name>Sebsabi</name>
 	<description>Sebsabi</description>
     <modules>
-        <module>Sebsabi Core Service</module>
-		<module>Service Discovery</module>
-		<module>Api Getway</module>
-        <module>Identity Service</module>
-    </modules>
+        <module>sebsabi-core-service</module>
+		<module>discovery-server</module>
+		<module>api-gateway</module>
+        <module>identity-service</module>
+		<module>notification-service</module>
+	</modules>
     <properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2023.0.0</spring-cloud.version>
@@ -84,6 +85,17 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.2.1</version>
+				<configuration>
+					<from>
+						<image>eclipse-temurin:17.0.4.1_1-jre</image>
+					</from>
+					<to><image>registry.hub.docker.com/alazdev/${project.artifactId}</image></to>
 				</configuration>
 			</plugin>
 		</plugins>
