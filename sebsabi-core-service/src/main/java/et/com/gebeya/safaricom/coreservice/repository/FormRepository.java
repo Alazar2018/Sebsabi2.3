@@ -14,7 +14,11 @@ public interface FormRepository extends JpaRepository<Form, Long> {
 
     Optional<Form> findFormByClient_Id(Long client_id);
 
+    List<Form> findFormsByClient_Email(String email);
+
     List<Form> findFormsByStatus(Status status);
+
+    List<Form> findFormsByClient_EmailAndStatus(String email, Status status);
 
 
 }

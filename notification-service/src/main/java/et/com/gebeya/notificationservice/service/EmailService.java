@@ -33,8 +33,7 @@ public class EmailService {
                     + "Should you have any questions or require assistance at any point, our dedicated support team is here to help. Feel free to reach out to us at [support@sebsabi.com](mailto:support@sebsabi.com) and we'll be more than happy to assist you.\n\n"
                     + "Thank you for choosing Sebsabi System. We look forward to empowering you with meaningful insights and a significant competitive edge.\n\n"
                     + "Best regards,\n\n"
-                    + "[Your Name]\n"
-                    + "[Your Position]\n"
+                    + "Sebsabi Team\n"
                     + "Sebsabi System");
         } catch (MessagingException e) {
             e.printStackTrace(); // Handle exception properly

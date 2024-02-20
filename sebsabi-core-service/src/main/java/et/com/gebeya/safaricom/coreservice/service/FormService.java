@@ -69,7 +69,9 @@ public class FormService {
     public List<Form> getFormsByStatus(Status status) {
         return formRepository.findFormsByStatus(status);
     }
-
+    public List<Form> getFormsByClientEmailAndStatus(String email, Status status) {
+        return formRepository.findFormsByClient_EmailAndStatus(email, status);
+    }
     public Form updateForm(Long id, FormDto formDTO) throws InvocationTargetException, IllegalAccessException {
         Form existingForm = getFormById(id);
         BeanUtils.copyProperties(formDTO, existingForm);
