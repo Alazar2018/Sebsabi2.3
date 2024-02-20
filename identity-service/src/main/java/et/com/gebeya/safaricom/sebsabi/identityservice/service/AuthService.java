@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class AuthService {
-
     @Autowired
     private UserCredentialRepository repository;
     @Autowired

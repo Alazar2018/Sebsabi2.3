@@ -22,3 +22,24 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+
+  # Postgres Docker Compose Config
+  # Postgres Docker Compose Config
+  postgres-core:
+    container_name: postgres-core
+    image: postgres
+    environment:
+      POSTGRES_DB: sebsabi_core
+      POSTGRES_USER: alazar
+      POSTGRES_PASSWORD: 1524
+      PGDATA: /data/postgres
+    volumes:
+      - ./postgres-core:/data/postgres
+    expose:
+      - "5431"
+    ports:
+      - "5431:5431"
+    command: -p 5431
+    restart: unless-stopped
+
+

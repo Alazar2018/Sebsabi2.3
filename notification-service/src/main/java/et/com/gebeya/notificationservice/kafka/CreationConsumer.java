@@ -18,7 +18,7 @@ public class CreationConsumer {
 
 
     public void handleNotification(ClientCreatedEvent clientCreatedEvent){
-        String clientEmail = clientCreatedEvent.getClientEmail()+"@gmail.com";
+        String clientEmail = clientCreatedEvent.getClientEmail();
         String fullName=clientCreatedEvent.getClientName();
        emailService.sendEmailNotification(clientEmail,fullName);
         //email Clients info

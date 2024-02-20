@@ -8,7 +8,6 @@ import et.com.gebeya.safaricom.coreservice.model.*;
 import et.com.gebeya.safaricom.coreservice.service.FormQuestionService;
 import et.com.gebeya.safaricom.coreservice.service.FormService;
 import et.com.gebeya.safaricom.coreservice.service.GigWorkerService;
-import et.com.gebeya.safaricom.coreservice.dto.AssignRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,8 +41,14 @@ public class FormController {
     }
     @GetMapping("/view")
     @ResponseStatus(HttpStatus.OK)
-    public List<Form> getAllFormsByStatus(Status status) {
+    public List<Form> getAllFormsByStatus(@RequestParam Status status) {
         return formService.getFormsByStatus(status);
+    }
+
+    @GetMapping("/view/form")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Form> getAllFormByClientEmailAndStatus(@RequestParam String clientEmail,@RequestParam Status status) {
+        return formService.getFormsByClientEmailAndStatus(clientEmail,status);
     }
 
     @GetMapping("/{client_id}")
@@ -66,7 +71,7 @@ public class FormController {
         return formQuestionService.getFormQuestionBYFOrmID(formID);
     }
     @PostMapping("/assign-job")
-    public ResponseEntity<GigWorker> assignJobToGigWorker(@RequestBody AssignRequest request) {
+    public ResponseEntity<GigWorker> assignJobToGigWorker(@RequestBody et.com.gebeya.safaricom.sebsabi.dto.AssignRequest request) {
         Long gigWorkerId = request.getGigWorkerId();
         Long formId = request.getFormId();
         GigWorker assignedGigWorker = gigWorkerService.assignJobToGigWorker(gigWorkerId, formId);
@@ -74,9 +79,8 @@ public class FormController {
     }
 
     @GetMapping("/{formId}")
-    public ResponseEntity<Form> getForm(@PathVariable Long formId, Principal principal) throws AccessDeniedException {
-        Long gigWorkerId = Long.parseLong(principal.getName()); // assuming gig worker's ID is the username
-        Form form = formService.getFormForGigWorker(gigWorkerId, formId);
+    public ResponseEntity<Form> getForm(@PathVariable Long formId)  {
+        Form form = formService.getFormById(formId);
         return ResponseEntity.ok(form);
     }
     @PostMapping("/submit-response")

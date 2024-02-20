@@ -4,6 +4,8 @@ import et.com.gebeya.safaricom.coreservice.dto.ClientRequest;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -17,6 +19,9 @@ public class Client extends Person{
    private String companyType;
    private String occupation;
 
+   @OneToMany(cascade = CascadeType.ALL)
+   @JoinColumn(name = "form_id")
+   private List<Form> forms;
 
    public Client(ClientRequest clientRequest){
       this.setFirstName(clientRequest.getFirstName());

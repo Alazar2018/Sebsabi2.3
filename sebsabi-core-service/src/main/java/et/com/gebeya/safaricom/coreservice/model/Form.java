@@ -23,7 +23,7 @@ public class Form {
     private int usageLimit;
     private Status status;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "client_username")
     private Client client;
 
@@ -45,6 +45,7 @@ public class Form {
         this.setDescription(formDto.getDescription());
         this.setTitle(formDto.getTitle());
         this.setUsageLimit(formDto.getUsageLimit());
+        this.setStatus(formDto.getStatus());
 
     }
 }

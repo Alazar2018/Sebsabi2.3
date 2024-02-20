@@ -21,9 +21,9 @@ import java.util.concurrent.CompletableFuture;
 public class GigWorkerController {
     private final GigWorkerService gigWorkerService;
    @PostMapping("/signup")
-   @CircuitBreaker(name = "identity",fallbackMethod = "fallBackMethod")
-   @TimeLimiter(name = "identity")
-   @Retry(name = "identity")
+//   @CircuitBreaker(name = "identity",fallbackMethod = "fallBackMethod")
+//   @TimeLimiter(name = "identity")
+//   @Retry(name = "identity")
    @ResponseStatus(HttpStatus.CREATED)
     public CompletableFuture<String> createGigWorker(@RequestBody GigWorkerRequest gigWorkerRequest){
       return CompletableFuture.supplyAsync(()->gigWorkerService.createGigWorkers(gigWorkerRequest));
