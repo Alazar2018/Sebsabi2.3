@@ -1,6 +1,5 @@
 package et.com.gebeya.safaricom.apigateway.filter;
 
-
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 
@@ -11,10 +10,11 @@ import java.util.function.Predicate;
 public class RouteValidator {
 
     public static final List<String> openApiEndpoints = List.of(
-            "/auth/register",
-            "/auth/login",
+            "/api/auth/register",
+            "/api/auth/login",
             "/api/core/client/signup",
-            "/api/core/gig-worker/signup"
+            "/api/core/gig-worker/signup",
+            "/api/auth/validate"
     );
 
     public Predicate<ServerHttpRequest> isSecured =

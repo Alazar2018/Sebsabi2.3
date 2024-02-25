@@ -5,6 +5,7 @@ import et.com.gebeya.safaricom.coreservice.dto.ClientResponse;
 import et.com.gebeya.safaricom.coreservice.dto.UserInformation;
 import et.com.gebeya.safaricom.coreservice.event.ClientCreatedEvent;
 import et.com.gebeya.safaricom.coreservice.model.Client;
+import et.com.gebeya.safaricom.coreservice.model.enums.Authority;
 import et.com.gebeya.safaricom.coreservice.repository.ClientRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -43,10 +44,13 @@ public class ClientService {
         UserInformation userInformation = new UserInformation();
         userInformation.setUsername(client.getEmail());
         userInformation.setPassword(client.getPassword());
-        userInformation.setRoles("ROLE_CLIENTS");
+        userInformation.setAuthority(Authority.CLIENTS);
+        userInformation.setName(client.getFirstName().concat(client.getLastName()));
+        userInformation.setRoleId(client.getId());
+        userInformation.setIsActive(true);
 
         String response = webClientBuilder.build().post()
-                .uri("http://identity-service/auth/register")
+                .uri("http://identity-service/api/auth/register")
                 .bodyValue(userInformation)
                 .retrieve()
                 .bodyToMono(String.class)

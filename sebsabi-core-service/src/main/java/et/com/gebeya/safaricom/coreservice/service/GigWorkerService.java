@@ -7,6 +7,7 @@ import et.com.gebeya.safaricom.coreservice.dto.UserInformation;
 import et.com.gebeya.safaricom.coreservice.event.ClientCreatedEvent;
 import et.com.gebeya.safaricom.coreservice.model.Form;
 import et.com.gebeya.safaricom.coreservice.model.GigWorker;
+import et.com.gebeya.safaricom.coreservice.model.enums.Authority;
 import et.com.gebeya.safaricom.coreservice.repository.FormRepository;
 import et.com.gebeya.safaricom.coreservice.repository.GigWorkerRepository;
 
@@ -43,10 +44,13 @@ public class GigWorkerService {
         UserInformation userInformation = new UserInformation();
         userInformation.setUsername(gigWorker.getEmail());
         userInformation.setPassword(gigWorker.getPassword());
-        userInformation.setRoles("ROLE_GIGWORKER");
+        userInformation.setAuthority(Authority.GIGWORKERS);
+        userInformation.setName(gigWorker.getFirstName().concat(gigWorker.getLastName()));
+        userInformation.setRoleId(gigWorker.getId());
+        userInformation.setIsActive(true);
 
         String response = webClientBuilder.build().post()
-                .uri("http://identity-service/auth/register")
+                .uri("http://identity-service/api/auth/register")
                 .bodyValue(userInformation)
                 .retrieve()
                 .bodyToMono(String.class)

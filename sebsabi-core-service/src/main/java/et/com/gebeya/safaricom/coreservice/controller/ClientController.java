@@ -10,7 +10,6 @@ import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import jakarta.annotation.security.RolesAllowed;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,7 +37,6 @@ public class ClientController {
 
 
     @GetMapping("/view")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.OK)
     public List<ClientResponse> getAllClients(){
 
@@ -46,7 +44,6 @@ public class ClientController {
         return clientService.getAllClients();
     }
     @GetMapping()
-    @PreAuthorize("hasAuthority('ROLE_CLIENT')")
     @ResponseStatus(HttpStatus.OK)
     public String getMessage(){
        return "see us";

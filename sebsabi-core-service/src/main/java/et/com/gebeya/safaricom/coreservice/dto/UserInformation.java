@@ -1,5 +1,6 @@
 package et.com.gebeya.safaricom.coreservice.dto;
 
+import et.com.gebeya.safaricom.coreservice.model.enums.Authority;
 import jakarta.annotation.Nonnull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +13,10 @@ import lombok.NoArgsConstructor;
 @Builder
 
 public class UserInformation {
+    private String name;
     private String username;
     private String password;
-    private String roles;
+    private Authority authority;
+    private Long roleId;
+    private Boolean isActive;
 }
