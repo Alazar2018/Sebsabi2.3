@@ -1,7 +1,7 @@
 package et.com.gebeya.safaricom.coreservice.service;
 
 
-import et.com.gebeya.safaricom.coreservice.dto.ProposalDto;
+import et.com.gebeya.safaricom.coreservice.dto.requestDto.ProposalDto;
 import et.com.gebeya.safaricom.coreservice.model.Form;
 import et.com.gebeya.safaricom.coreservice.model.GigWorker;
 import et.com.gebeya.safaricom.coreservice.model.Proposal;
@@ -22,7 +22,7 @@ public class ProposalService {
 
     public void submitProposal(ProposalDto proposalDto) {
         Form form = formService.getFormById(proposalDto.getFormId());
-        GigWorker gigWorker = gigWorkerService.getGigWorkerById(proposalDto.getGigWorkerId());
+        GigWorker gigWorker = gigWorkerService.getGigWorkerByIdg(proposalDto.getGigWorkerId());
 
         Proposal proposal = new Proposal();
         proposal.setForm(form);

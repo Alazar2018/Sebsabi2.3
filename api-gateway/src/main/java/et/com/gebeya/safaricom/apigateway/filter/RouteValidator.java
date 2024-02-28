@@ -14,7 +14,9 @@ public class RouteValidator {
             "/api/auth/login",
             "/api/core/client/signup",
             "/api/core/gig-worker/signup",
-            "/api/auth/validate"
+            "/api/auth/validate",
+            "/api/auth/reset-password/**",
+            "/api/auth/reset/update-password"
     );
 
     public Predicate<ServerHttpRequest> isSecured =

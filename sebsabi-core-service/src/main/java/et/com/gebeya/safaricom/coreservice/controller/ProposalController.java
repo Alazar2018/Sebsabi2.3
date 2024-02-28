@@ -1,5 +1,5 @@
 package et.com.gebeya.safaricom.coreservice.controller;
-import et.com.gebeya.safaricom.coreservice.dto.ProposalDto;
+import et.com.gebeya.safaricom.coreservice.dto.requestDto.ProposalDto;
 import et.com.gebeya.safaricom.coreservice.service.ProposalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

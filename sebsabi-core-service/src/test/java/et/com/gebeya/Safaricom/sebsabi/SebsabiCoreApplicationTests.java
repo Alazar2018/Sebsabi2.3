@@ -2,8 +2,8 @@ package et.com.gebeya.Safaricom.sebsabi;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import et.com.gebeya.safaricom.coreservice.SebsabiCoreApplication;
-import et.com.gebeya.safaricom.coreservice.dto.ClientRequest;
-import et.com.gebeya.safaricom.coreservice.dto.GigWorkerRequest;
+import et.com.gebeya.safaricom.coreservice.dto.requestDto.ClientRequest;
+import et.com.gebeya.safaricom.coreservice.dto.requestDto.GigWorkerRequest;
 import et.com.gebeya.safaricom.coreservice.model.Status;
 import et.com.gebeya.safaricom.coreservice.repository.FormRepository;
 import et.com.gebeya.safaricom.coreservice.service.FormService;

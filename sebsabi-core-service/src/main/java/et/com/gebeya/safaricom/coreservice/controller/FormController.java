@@ -1,9 +1,10 @@
 package et.com.gebeya.safaricom.coreservice.controller;
 
-import et.com.gebeya.safaricom.coreservice.dto.FormDto;
-import et.com.gebeya.safaricom.coreservice.dto.FormQuestionDto;
-import et.com.gebeya.safaricom.coreservice.dto.JobFormDisplaydto;
-import et.com.gebeya.safaricom.coreservice.dto.UserResponseDto;
+import et.com.gebeya.safaricom.coreservice.dto.requestDto.FormDto;
+import et.com.gebeya.safaricom.coreservice.dto.requestDto.AssignRequest;
+import et.com.gebeya.safaricom.coreservice.dto.requestDto.FormQuestionDto;
+import et.com.gebeya.safaricom.coreservice.dto.responseDto.JobFormDisplaydto;
+import et.com.gebeya.safaricom.coreservice.dto.responseDto.UserResponseDto;
 import et.com.gebeya.safaricom.coreservice.model.*;
 import et.com.gebeya.safaricom.coreservice.service.FormQuestionService;
 import et.com.gebeya.safaricom.coreservice.service.FormService;
@@ -28,8 +29,8 @@ public class FormController {
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public JobFormDisplaydto createForm(@RequestBody FormDto formDTO ,@RequestParam String clientUsername)  {
-        JobFormDisplaydto newForm=formService.createForm(formDTO,clientUsername);
+    public JobFormDisplaydto createForm(@RequestBody FormDto formDTO ,@RequestParam Long clientId)  {
+        JobFormDisplaydto newForm=formService.createForm(formDTO,clientId);
        return newForm;
     }
 
@@ -62,15 +63,17 @@ public class FormController {
         return formService.updateForm(id, formDTO);
     }
     @PostMapping("/add/question-to-form")
-    public Form addQuestionToForm(@RequestParam Long formID, @RequestBody FormQuestionDto questionDTO) throws InvocationTargetException, IllegalAccessException {
-        return formService.addQuestionToForm(formID, questionDTO);
+    public Form addQuestionsToForm(@RequestParam Long formID, @RequestBody List<FormQuestionDto> questionDTOList) {
+        return formService.addQuestionsToForm(formID, questionDTOList);
     }
+
+
     @GetMapping("/view/questionOfForm")
     public List<FormQuestion> viewQuestions(@RequestParam Long formID) throws InvocationTargetException, IllegalAccessException {
         return formQuestionService.getFormQuestionBYFOrmID(formID);
     }
     @PostMapping("/assign-job")
-    public ResponseEntity<GigWorker> assignJobToGigWorker(@RequestBody et.com.gebeya.safaricom.sebsabi.dto.AssignRequest request) {
+    public ResponseEntity<GigWorker> assignJobToGigWorker(@RequestBody AssignRequest request) {
         Long gigWorkerId = request.getGigWorkerId();
         Long formId = request.getFormId();
         GigWorker assignedGigWorker = gigWorkerService.assignJobToGigWorker(gigWorkerId, formId);

@@ -26,4 +26,13 @@ public class CreationConsumer {
 
     }
 
+    @KafkaListener(topics = "${spring.kafka.email.name}", groupId = "${spring.kafka.consumer.group-id}")
+    public void handlePasswordReset(PasswordResetEvent passwordResetEvent) {
+        // Handle password reset event
+        String recipient = passwordResetEvent.getEmail();
+        String resetToken = passwordResetEvent.getResetToken();
+        emailService.sendResetPasswordEmail(recipient, resetToken);
+        log.info("Sent password reset email to: {}", recipient);
+    }
+
 }

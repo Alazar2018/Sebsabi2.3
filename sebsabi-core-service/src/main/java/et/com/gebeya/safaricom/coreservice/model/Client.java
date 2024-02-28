@@ -1,6 +1,6 @@
 package et.com.gebeya.safaricom.coreservice.model;
 
-import et.com.gebeya.safaricom.coreservice.dto.ClientRequest;
+import et.com.gebeya.safaricom.coreservice.dto.requestDto.ClientRequest;
 import jakarta.persistence.*;
 import lombok.*;
 

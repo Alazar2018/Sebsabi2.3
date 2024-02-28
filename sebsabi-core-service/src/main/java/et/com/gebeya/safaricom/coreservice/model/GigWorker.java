@@ -1,10 +1,11 @@
 package et.com.gebeya.safaricom.coreservice.model;
 
-import et.com.gebeya.safaricom.coreservice.dto.GigWorkerRequest;
+import et.com.gebeya.safaricom.coreservice.dto.requestDto.GigWorkerRequest;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,6 +25,7 @@ public class GigWorker extends Person{
     private Date dob;
     @OneToOne
     @JoinColumn(name = "assigned_form_id") // This assumes the column name in your GigWorker table
+    @Valid
     private Form assignedForm;
     public GigWorker(GigWorkerRequest gigWorkerRequest){
         this.setFirstName(gigWorkerRequest.getFirstName());

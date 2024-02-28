@@ -5,6 +5,7 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -42,4 +43,32 @@ public class EmailService {
 
         emailSender.send(message);
     }
+
+    public void sendResetPasswordEmail(String recipient, String resetToken) {
+        // Construct the reset password link
+        String resetLink = "http://localhost:8080/api/auth/reset/update-password?token=" + resetToken;
+
+        // Construct the email content
+        String emailContent = "Dear User,\n\n"
+                + "Please click on the following link to reset your password: " + resetLink + "\n\n"
+                + "If you did not request this change, please ignore this email.";
+        MimeMessage message = emailSender.createMimeMessage();
+
+        MimeMessageHelper helpers;
+        try {
+            helpers = new MimeMessageHelper(message, true);
+
+            helpers.setTo(recipient);
+            helpers.setSubject("Password Reset Request");
+            helpers.setText(emailContent);
+            // Send the email
+
+        }catch (MessagingException e) {
+            e.printStackTrace(); // Handle exception properly
+            return;
+        }
+        emailSender.send(message);
+
+    }
+
 }

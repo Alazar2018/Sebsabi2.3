@@ -2,14 +2,12 @@ package et.com.gebeya.safaricom.coreservice.service;
 
 
 import et.com.gebeya.safaricom.coreservice.Exceptions.FormNotFoundException;
-import et.com.gebeya.safaricom.coreservice.dto.GigWorkerRequest;
-import et.com.gebeya.safaricom.coreservice.dto.GigwWorkerResponse;
-import et.com.gebeya.safaricom.coreservice.dto.UserInformation;
-import et.com.gebeya.safaricom.coreservice.dto.UserRequestDto;
+import et.com.gebeya.safaricom.coreservice.dto.requestDto.GigWorkerRequest;
+import et.com.gebeya.safaricom.coreservice.dto.responseDto.GigwWorkerResponse;
+import et.com.gebeya.safaricom.coreservice.dto.requestDto.UserRequestDto;
 import et.com.gebeya.safaricom.coreservice.event.ClientCreatedEvent;
 import et.com.gebeya.safaricom.coreservice.model.Form;
 import et.com.gebeya.safaricom.coreservice.model.GigWorker;
-import et.com.gebeya.safaricom.coreservice.model.Status;
 import et.com.gebeya.safaricom.coreservice.model.enums.Authority;
 import et.com.gebeya.safaricom.coreservice.repository.FormRepository;
 import et.com.gebeya.safaricom.coreservice.repository.GigWorkerRepository;
@@ -72,10 +70,15 @@ public class GigWorkerService {
         return new GigwWorkerResponse(gigWorker);
     }
 
-    public GigWorker getGigWorkerById(Long gigWorkerId) {
+
+    public GigwWorkerResponse getGigWorkerById(Long gigWorkerId) {
+        return new GigwWorkerResponse(gigWorkerRepository.findById(gigWorkerId)
+                 .orElseThrow(() -> new RuntimeException("GigWorker not found with id: " + gigWorkerId)));
+    }
+    public GigWorker getGigWorkerByIdg(Long gigWorkerId) {
+
         return gigWorkerRepository.findById(gigWorkerId)
                 .orElseThrow(() -> new RuntimeException("GigWorker not found with id: " + gigWorkerId));
-
     }
     public GigWorker assignJobToGigWorker(Long gigWorkerId, Long formId) {
         // Validate gig worker ID
